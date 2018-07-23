@@ -43,14 +43,14 @@ call、apply与bind的区别：fn1.call(fn2,'name','age')立即执行；var binF
 ## sort排序  
 arr.sort()//默认按ASCLL从小到大排序。（数字不准确，得用排序函数）  
 arr.sort(function(a,b){   
-	> return a-b;//从小到大  
-	> return b-a;//从大到小  
+>>	return a-b;//从小到大  
+	return b-a;//从大到小  
 })  
 ## 求数组最大最小值  
 ### 排序取值法：  
 var arr = [8, 3, 4, 8, 9, 6, 2, 7];  
 ary.sort(function (a, b) {  
-    > return a - b;  
+    return a - b;  
 });  
 var min = arr[0];  
 var max = arr[arr.length - 1];  
@@ -58,9 +58,9 @@ var max = arr[arr.length - 1];
 var arr = [8, 3, 4, 8, 9, 6, 2, 7];    
 var min=arr[0],max=arr[0];  
 for(var i=0;i<arr.length;i++){  
-	> var cur=arr[i];  
-	> cur<min?min=cur:null;  
-	>cur>max?max=cur:null;  
+	var cur=arr[i];  
+	cur<min?min=cur:null;  
+	cur>max?max=cur:null;  
 }  
 ### Math中的max和min  
 var arr = [8, 3, 4, 8, 9, 6, 2, 7];    
