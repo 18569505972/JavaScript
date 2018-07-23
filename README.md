@@ -1,4 +1,4 @@
-# 基础知识笔记
+# 基础知识笔记  
 ##viewport  
 <meta name='viewport' content='width=device-width,user-scable=no,initial-scale=1'>  
 width设置布局视口的宽度，为一个正整数  
