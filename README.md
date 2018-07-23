@@ -1,6 +1,6 @@
 # 基础知识笔记  
-##viewport  
-<meta name='viewport' content='width=device-width,user-scable=no,initial-scale=1'>  
+##viewport
+\<meta name='viewport' content='width=device-width,user-scable=no,initial-scale=1'\>  
 width设置布局视口的宽度，为一个正整数  
 initial-scale设置页面的初始缩放程度 和布局视口的宽  
 minimum-scale允许用户的最小缩放程度，为一个数字，可以带小数  
