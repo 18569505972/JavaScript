@@ -60,7 +60,7 @@ var min=arr[0],max=arr[0];
 for(var i=0;i<arr.length;i++){  
 	>> var cur=arr[i];  
 	>> cur<min?min=cur:null;  
-	>> cur>max?max=cur:null;  
+	>>cur>max?max=cur:null;  
 }  
 ### Math中的max和min  
 var arr = [8, 3, 4, 8, 9, 6, 2, 7];    
