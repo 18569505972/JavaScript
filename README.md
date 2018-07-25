@@ -26,17 +26,16 @@ document.cookie="name=zhao;age=15;expirse="+(new Date().getTime()+1*24*60*60*100
 获取键名：sessionStorage.key(i)//i为枚举序号  
 ## call、apply、bind用法区别  
 ### 用法：  
-function fn1(){  
-	console.log(1+this.name)    
+function fn1(){   
+　　console.log(1+this.name)    
 }  
 function fn2(){  
-	this.name='zhao';   
-	console.log(2+this.name)   
+　　this.name='zhao';   
+　　console.log(2+this.name)   
 }  
-fn1.call(fn2) //1zhao   
-//fn1.call=function(){this}，call方法中this指向fn1；fn1内部this指向fn2  
-fn1.call.call(fn2) //2zhao   
-//fn1.call方法中this指向fn2，所以打印2zhao  
+fn1.call(fn2) //1fn2   
+fn1.call(fn2()) //1zhao  
+//fn1.call=function(){this}，call方法中this指向fn1；fn1内部this指向fn2   
 ### 区别：  
 call与apply传参不同：fn1.call(fn2,'name','age');fn1.apply(fn2,['name','age'])  
 call、apply与bind的区别：fn1.call(fn2,'name','age')立即执行；var binFn=fn1.bind(fn2,'name','age');binFn()返回一个值  
@@ -66,6 +65,64 @@ for(var i=0;i<arr.length;i++){
 var arr = [8, 3, 4, 8, 9, 6, 2, 7];    
 Math.min.apply(null,arr)  
 Math.max.apply(null,arr)  
+### 比较符==转换规则  
+object比较引用地址（存储地址）。[]==false,true，array的toString方法，会用逗号链接每个元素，空数组转换为''，所以返回true。   
+### 类数组对象arguments转数组  
+[].slice.call(arguments)   
+### for循环异步问题  
+for (var i = 0; i < 5; i++) {  
+  setTimeout(function() {  
+    console.log(i);  
+  }, 1000 * i);  
+}  
+####es6使用let声明循环参数：  
+for (let i = 0; i < 5; i++) {  
+  setTimeout(function() {  
+    console.log(i);  
+  }, 1000 * i);  
+}  
+####闭包：
+for (let i = 0; i < 5; i++) {  
+  (function(){setTimeout(function() {  
+    console.log(i);  
+  }, 1000 * i)})(i);  
+}  
+### js性能优化  
+####函数防抖:  
+概念：函数节流是通过一个定时器，阻断连续重复的函数调用，从而一定程度上优化性能。  
+用途：主要用于用户界面调用的函数，如：resize、mousemove、keyup事件的监听函数。   
+这类监听函数的主要特征：   
+1、短时间内连续多次重复触发；   
+2、大量的DOM操作。  
+意义：在用户察觉范围外，降低函数调用的频率，从而提升性能。目的是只有在执行函数的请求停止了一段时间之后才执行。    
+\<input id="search" type="text"\>  
+var search=document.getElementById(search)  
+function searchText(text){  
+	console.log('search'+text)  
+}  
+search.addEventListener('keyup',function(event){  
+	debounce(searchtext,null,500,this.value)  
+})  
+function debounce(fn,fn2,delay,text){  
+	clearTimeout(fn.timeId)  
+	fn.timeId=setTimeout(function(){  
+		fn.call(context,text);  
+	},delay)  
+}  
+#### 函数节流：  
+var canRun=true;  
+document.getElementById('throttle').onscroll=function(){  
+	if(!canRun){  
+		return;  
+	}  
+	canRun=false;  
+	setTimeout(function(){  
+		canRun=true;
+		console.log('throttle');  
+	},500)  
+}  
+
+
 
 
 
