@@ -8,6 +8,21 @@ initial-scale设置页面的初始缩放程度 和布局视口的宽
 minimum-scale允许用户的最小缩放程度，为一个数字，可以带小数  
 maximum-scale允许用户的最大缩放值，为一个数字，可以带小数  
 user-scalable是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许  
+## window.onload与document.ready区别  
+onload所有资源包括图片加载完毕在执行，document.ready dom结构生成就执行。document.ready可定义多个。  
+## promise与settimeout  执行顺序   
+promise优先级高  
+## es6继承与es5继承区别  
+ES5的继承实质上是先创建子类的实例对象，然后再将父类的方法添加到this上（Parent.apply(this)）。  
+ES6的继承机制完全不同，实质上是先创建父类的实例对象this（所以必须先调用父类的super方法），然后再用子类的构造函数修改this。  
+ES5的继承时通过原型或构造函数机制来实现。  
+ES6通过class关键字定义类，里面有构造方法，类之间通过extends关键字实现继承。子类必须在constructor方法中调用super方法，否则新建实例报错。因为子类没有自己的this对象，而是继承了父类的this对象，然后对其进行加工。如果不调用super方法，子类得不到this对象。  
+注意super关键字指代父类的实例，即父类的this对象。  
+## JS通过WebView调用 Android 代码 
+1. 通过WebView的addJavascriptInterface（）进行对象映射   
+2. 通过 WebViewClient 的shouldOverrideUrlLoading ()方法回调拦截 url   
+3. 通过 WebChromeClient 的onJsAlert()、onJsConfirm()、onJsPrompt（）方法回调拦截JS对话框alert()、confirm()  、prompt（）消息    
+
 ## cookies，sessionStorage和localStorage的区别、用法  
 ### 区别：   
 1： 存储大小  
