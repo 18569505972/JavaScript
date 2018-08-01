@@ -12,6 +12,14 @@ user-scalable是否允许用户进行缩放，值为”no”或”yes”, no 代
 onload所有资源包括图片加载完毕在执行，document.ready dom结构生成就执行。document.ready可定义多个。  
 ## promise与settimeout  执行顺序   
 promise优先级高  
+## Object.assign({},source1,source2)浅拷贝  
+## object深复制  
+1、JSON.parse(JSON.stringify(obj))，复制对象方法为空  
+2、lodash插件
+```javascript
+var _=require('lodash')
+var obj2=_.cloneDeep(obj1)
+```
 ## es6继承与es5继承区别  
 ES5的继承实质上是先创建子类的实例对象，然后再将父类的方法添加到this上（Parent.apply(this)）。  
 ES6的继承机制完全不同，实质上是先创建父类的实例对象this（所以必须先调用父类的super方法），然后再用子类的构造函数修改this。  
@@ -32,6 +40,21 @@ localstorage永久储存，浏览器关闭不清除，只能手动清除。sessi
 3、数据与服务器间的交互  
 cookie的数据会自动的传递到服务器，服务器端也可以写cookie到客户端。sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。  
 4、不同浏览器无法共享localStorage和sessionStorage，不同页面同域（协议、端口、域名一致）可共享localStorage，不可共享sessionStorage（除了标签页同域嵌入的iframe）  
+## 变量提升与函数提升  
+```javascript
+var str;
+console.log(str)
+str='123';
+console.log(str)
+```
+```javascript
+function f1(){
+	
+}
+console.log(f1)
+var f2=function(){}
+console.log(f2)
+```
 ### 使用：  
 #### cookie：
 设置cookie：自定义参数、过期时间（expirse）、页面路径  
@@ -41,6 +64,10 @@ document.cookie="name=zhao;age=15;expirse="+(new Date().getTime()+1*24*60*60*100
 取值：sessionStorage.getItem('key')  
 删除：sessionStorage.removeItem('key')//删除指定值sessionStorage.clear()//删除所有值  
 获取键名：sessionStorage.key(i)//i为枚举序号  
+## 基本类型与引用类型区别  
+引用类型可定义方法属性，引用类型赋给变量指向同一地址。  
+## splice(index,deletecount,item1,item2...)
+从index位置删除deletecount个元素，增加item1、item2....。  
 ## call、apply、bind用法区别  
 ### 用法：  
 ```javascript
@@ -165,6 +192,13 @@ document.getElementById('throttle').onscroll=function(){
 进入执行环境，给变量标记为进入环境，变量离开执行环境，标记为离开环境。垃圾收集器，先给内存中所有变量打上标记，然后去掉环境中的变量以及被环境中变量引用的标记，之后再被标记上的变量就是要清除的变量。
 ### 2、引用计数  
 声明一个变量，当他被引用赋值时，则记录一次引用次数，包含这个值的引用变量又取得了另外的值，则这个值引用次数减1。引用次数为0，则释放值所占用的内存。  
+## js事件机制  
+IE事件冒泡  
+dom二级事件流，事件捕获，处于目标，事件冒泡。  
+事件冒泡会触发父元素绑定事件，所以要阻止事件冒泡。（event.stopPropagation()）  
+## 事件循环  
+检查事件队列是否为空，如果为空则继续检查，否则将事件队列首个任务放入执行栈，执行任务，任务执行完成，检查执行栈为空，则继续检查事件队列，否则继续检查执行栈。  
+事件队列为异步回调执行任务，按执行事件顺序排列。  
 ## 浏览器缓存机制  
 ### 类型：
 强缓存：缓存未过期，使用浏览器缓存 200  
